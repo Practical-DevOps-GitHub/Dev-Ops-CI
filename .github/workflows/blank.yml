@@ -1,39 +1,33 @@
-name: GitHub Actions Demo
-
-run-name: ${{ github.actor }} is testing out GitHub Actions
+name: Continuous Integration
 
 on:
-
   push:
-
-  workflow_dispatch:
+    branches:
+      - main  
+  workflow_dispatch:  
 
 jobs:
-
-  Explore-GitHub-Actions:
-
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest 
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  
 
-      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-
-      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-
-      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-
-      - name: Check out repository code
-
-        uses: actions/checkout@v3
-
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-
-      - run: echo "The workflow is now ready to test your code on the runner."
-
-      - name: List files in the repository
-
+      - name: Install dependencies
         run: |
+          # Commands to install dependencies
+          # For example, for Node.js:
+          # npm install
 
-          ls ${{ github.workspace }}
+      - name: Build project
+        run: |
+          # Commands to build the project
+          # For example, for Node.js:
+          # npm run build
 
-      - run: echo "This job's status is ${{ job.status }}."
+      - name: Run unit tests
+        run: |
+          # Commands to run unit tests
+          # For example, for Node.js:
+          # npm test
